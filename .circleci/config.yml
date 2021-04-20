@@ -7,5 +7,5 @@ jobs:
     executor: node/default
     steps:
       - checkout
-      - run: npm install
       - run: echo $(curl ipinfo.io/ip)
+      - run: echo "HELLO WORLD"
