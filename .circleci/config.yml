@@ -7,5 +7,6 @@ jobs:
     executor: node/default
     steps:
       - checkout
-      - run: echo $(curl ipinfo.io/ip)
-      - run: echo "HELLO WORLD"
+      - run: |
+          echo $(curl ipinfo.io/ip)
+          echo "HELLO WORLD"
