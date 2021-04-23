@@ -8,5 +8,11 @@ jobs:
     steps:
       - checkout
       - run: |
-          echo $(curl ipinfo.io/ip)
-          echo "HELLO WORLD"
+          curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+          unzip awscli-bundle.zip
+          ./awscli-bundle/install -b ~/bin/aws
+
+          PUBLIC_IP=$(curl ipinfo.io/ip)
+          AWS_REGION=ap-northeast-2
+
+          ~/bin/aws ec2 authorize-security-group-ingress --region $AWS_REGION --group-id $SG_ID --protocol tcp --port 22 --cidr $PUBLIC_IP/24
