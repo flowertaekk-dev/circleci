@@ -14,8 +14,8 @@ jobs:
           curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
           unzip awscli-bundle.zip
           ./awscli-bundle/install -b ~/bin/aws
-
+      - run: |
           PUBLIC_IP=$(curl ipinfo.io/ip)
           AWS_REGION=ap-northeast-2
-
+      - run: |
           scp -r ./build/* ec2-user@ec2-3-34-185-86.ap-northeast-2.compute.amazonaws.com:/usr/share/nginx/html/
